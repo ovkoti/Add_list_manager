@@ -1,0 +1,36 @@
+import React, { useState } from 'react';
+
+function ItemListManager() {
+  const [items, setItems] = useState([]); // State to manage the list of items
+  const [inputValue, setInputValue] = useState(''); // State to manage the input value
+
+  // Function to handle adding items
+  const addItem = () => {
+    if (inputValue.trim() !== '') {
+      setItems([...items, inputValue]); // Add the input value to the list
+      setInputValue(''); // Clear the input field
+    }
+  };
+
+  return (
+    <div>
+      <h1>Item List Manager</h1>
+      <div>
+        <input
+          type="text"
+          placeholder="Enter item"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)} // Update input value
+        />
+        <button onClick={addItem}>Add Item</button>
+      </div>
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>{item}</li> // Display each item in the list
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default ItemListManager;
